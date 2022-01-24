@@ -25,6 +25,14 @@ func TestSlidingWindow_maxSumSubarrayOfSizeK2(t *testing.T) {
 	}
 }
 
+func TestFindMax(t *testing.T) {
+	got := Max(1, 2)
+
+	if got != 2 {
+		t.Errorf("Should be 2")
+	}
+}
+
 func errorString(input []int, got int, want int) string {
 	return fmt.Sprintf("findMaxSumSubArray(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
 }
