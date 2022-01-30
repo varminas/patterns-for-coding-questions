@@ -2,6 +2,7 @@
 package slidingwindow
 
 import (
+	"github.com/cornelk/hashmap"
 	"github.com/varminas/patterns-for-coding-questions/math"
 )
 
@@ -39,4 +40,40 @@ func FindMinSubArray(S int, arr []int) int {
 		}
 	}
 	return minInterval
+}
+
+// 3. Longest Substring with maximum K Distinct Characters (medium)
+func FindLongestSubstringWithMaxKDistChars(str string, k int) int {
+	var windowStart = 0
+	var maxLength = 0
+	var uniqueChars = &hashmap.HashMap{}
+
+	for windowEnd := 0; windowEnd < len(str); windowEnd++ {
+		var rightChar = str[windowEnd]
+		var count = 1
+		currentCount, ok := uniqueChars.Get(rightChar)
+		if ok {
+			count = currentCount.(int)
+		}
+		uniqueChars.Set(rightChar, count)
+
+		for uniqueChars.Len() > k {
+			var leftChar = str[windowStart]
+			count = 0
+			currentLeftCount, ok := uniqueChars.Get(leftChar)
+			if ok {
+				count = currentLeftCount.(int)
+			}
+			uniqueChars.Set(leftChar, count-1)
+
+			currentLeftCount, ok = uniqueChars.Get(leftChar)
+			if ok && currentLeftCount == 0 {
+				uniqueChars.Del(leftChar)
+			}
+			windowStart++
+		}
+
+		maxLength = math.Max(maxLength, (windowEnd - windowStart + 1))
+	}
+	return maxLength
 }
