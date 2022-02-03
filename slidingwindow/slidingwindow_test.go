@@ -85,6 +85,16 @@ func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K3(t *testing.T) {
 	}
 }
 
+func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K10(t *testing.T) {
+	want := 6
+	input := "cbbebi"
+
+	got := FindLongestSubstringWithMaxKDistChars(input, 10)
+	if got != want {
+		t.Errorf(errorStringStr(input, got, want))
+	}
+}
+
 func errorString(input []int, got int, want int) string {
 	return fmt.Sprintf("findMaxSumSubArray(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
 }
