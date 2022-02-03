@@ -50,23 +50,13 @@ func FindLongestSubstringWithMaxKDistChars(str string, k int) int {
 
 	for windowEnd := 0; windowEnd < len(str); windowEnd++ {
 		var rightChar = str[windowEnd]
-		var count = 1
-		currentCount, ok := uniqueChars.Get(rightChar)
-		if ok {
-			count = currentCount.(int)
-		}
-		uniqueChars.Set(rightChar, count)
+		uniqueChars.Set(rightChar, getOrDefault(uniqueChars, rightChar, 0)+1)
 
 		for uniqueChars.Len() > k {
 			var leftChar = str[windowStart]
-			count = 0
-			currentLeftCount, ok := uniqueChars.Get(leftChar)
-			if ok {
-				count = currentLeftCount.(int)
-			}
-			uniqueChars.Set(leftChar, count-1)
+			uniqueChars.Set(leftChar, getOrDefault(uniqueChars, leftChar, 0)-1)
 
-			currentLeftCount, ok = uniqueChars.Get(leftChar)
+			currentLeftCount, ok := uniqueChars.Get(leftChar)
 			if ok && currentLeftCount == 0 {
 				uniqueChars.Del(leftChar)
 			}
@@ -86,22 +76,13 @@ func FindMaxFruitCountOf2Types(input []string) int {
 	for windowEnd := 0; windowEnd < len(input); windowEnd++ {
 
 		rightChar := input[windowEnd]
-		count := 0
-		currentRightCount, ok := uniqueChars.Get(rightChar)
-		if ok {
-			count = currentRightCount.(int)
-		}
-		uniqueChars.Set(rightChar, count+1)
+		uniqueChars.Set(rightChar, getOrDefault(uniqueChars, rightChar, 0)+1)
 
 		for uniqueChars.Len() > 2 {
 			leftChar := input[windowStart]
-			count = 0
+
+			uniqueChars.Set(leftChar, getOrDefault(uniqueChars, leftChar, 0)-1)
 			currentLeftCount, ok := uniqueChars.Get(leftChar)
-			if ok {
-				count = currentLeftCount.(int)
-			}
-			uniqueChars.Set(leftChar, count-1)
-			currentLeftCount, ok = uniqueChars.Get(leftChar)
 			if ok && currentLeftCount == 0 {
 				uniqueChars.Del(leftChar)
 			}
@@ -111,4 +92,13 @@ func FindMaxFruitCountOf2Types(input []string) int {
 		maxSize = math.Max(maxSize, windowEnd-windowStart+1)
 	}
 	return maxSize
+}
+
+func getOrDefault(inputMap *hashmap.HashMap, str interface{}, defaultValue int) int {
+	currentLeftCount, ok := inputMap.Get(str)
+	if ok {
+		return currentLeftCount.(int)
+	} else {
+		return defaultValue
+	}
 }
