@@ -95,6 +95,26 @@ func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K10(t *testing.T) {
 	}
 }
 
+func TestSlidingWindow_FindMaxFruitCountOf2Types_V1(t *testing.T) {
+	want := 3
+	input := []string{"A", "B", "C", "A", "C"}
+
+	got := FindMaxFruitCountOf2Types(input)
+	if got != want {
+		t.Errorf(errorStringArr(input, got, want))
+	}
+}
+
+func TestSlidingWindow_FindMaxFruitCountOf2Types_V2(t *testing.T) {
+	want := 5
+	input := []string{"A", "B", "C", "B", "B", "C"}
+
+	got := FindMaxFruitCountOf2Types(input)
+	if got != want {
+		t.Errorf(errorStringArr(input, got, want))
+	}
+}
+
 func errorString(input []int, got int, want int) string {
 	return fmt.Sprintf("findMaxSumSubArray(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
 }
@@ -103,6 +123,6 @@ func errorStringStr(input string, got int, want int) string {
 	return fmt.Sprintf("FindLongestSubstringWithMaxKDistChars(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
 }
 
-func errorStringArr(input []int, got []int, want []int) string {
-	return fmt.Sprintf("findMaxSumSubArray(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
+func errorStringArr(input []string, got int, want int) string {
+	return fmt.Sprintf("FindMaxFruitCountOf2Types(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
 }

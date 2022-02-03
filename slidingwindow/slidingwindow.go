@@ -77,3 +77,38 @@ func FindLongestSubstringWithMaxKDistChars(str string, k int) int {
 	}
 	return maxLength
 }
+
+// 4. Fruits into Baskets (medium)
+func FindMaxFruitCountOf2Types(input []string) int {
+	windowStart := 0
+	uniqueChars := &hashmap.HashMap{}
+	maxSize := 0
+	for windowEnd := 0; windowEnd < len(input); windowEnd++ {
+
+		rightChar := input[windowEnd]
+		count := 0
+		currentRightCount, ok := uniqueChars.Get(rightChar)
+		if ok {
+			count = currentRightCount.(int)
+		}
+		uniqueChars.Set(rightChar, count+1)
+
+		for uniqueChars.Len() > 2 {
+			leftChar := input[windowStart]
+			count = 0
+			currentLeftCount, ok := uniqueChars.Get(leftChar)
+			if ok {
+				count = currentLeftCount.(int)
+			}
+			uniqueChars.Set(leftChar, count-1)
+			currentLeftCount, ok = uniqueChars.Get(leftChar)
+			if ok && currentLeftCount == 0 {
+				uniqueChars.Del(leftChar)
+			}
+			windowStart++
+		}
+
+		maxSize = math.Max(maxSize, windowEnd-windowStart+1)
+	}
+	return maxSize
+}
