@@ -113,6 +113,29 @@ func FindNoRepeatSubstring(input string) int {
 	return maxLength
 }
 
+// 6. Longest Substring with Same Letters after Replacement (hard)
+func FindCharacterReplacementLength(inputStr string, k int) int {
+	input := []rune(inputStr)
+	windowStart := 0
+	maxLength := 0
+	maxRepeatedLettersCount := 0
+	charsMap := &hashmap.HashMap{}
+
+	for windowEnd, rightChar := range input {
+		val := getOrDefault(charsMap, rightChar, 0) + 1
+		charsMap.Set(rightChar, val)
+		maxRepeatedLettersCount = math.Max(maxRepeatedLettersCount, val)
+
+		if windowEnd-windowStart+1-maxRepeatedLettersCount > k {
+			leftChar := input[windowStart]
+			charsMap.Set(leftChar, getOrDefault(charsMap, leftChar, 0)-1)
+			windowStart++
+		}
+		maxLength = math.Max(maxLength, windowEnd-windowStart+1)
+	}
+	return maxLength
+}
+
 func getOrDefault(inputMap *hashmap.HashMap, str interface{}, defaultValue int) int {
 	currentLeftCount, ok := inputMap.Get(str)
 	if ok {

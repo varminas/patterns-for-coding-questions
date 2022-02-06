@@ -157,6 +157,36 @@ func TestFindNoRepeatSubstring_V4(t *testing.T) {
 	}
 }
 
+func TestFindCharacterReplacementLength_V1(t *testing.T) {
+	want := 5
+	input := "aabccbb"
+
+	got := FindCharacterReplacementLength(input, 2)
+	if got != want {
+		t.Errorf(errorString("FindCharacterReplacementLength", input, got, want))
+	}
+}
+
+func TestFindCharacterReplacementLength_V2(t *testing.T) {
+	want := 4
+	input := "abbcb"
+
+	got := FindCharacterReplacementLength(input, 1)
+	if got != want {
+		t.Errorf(errorString("FindCharacterReplacementLength", input, got, want))
+	}
+}
+
+func TestFindCharacterReplacementLength_V3(t *testing.T) {
+	want := 3
+	input := "abccde"
+
+	got := FindCharacterReplacementLength(input, 1)
+	if got != want {
+		t.Errorf(errorString("FindCharacterReplacementLength", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got int, want int) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
