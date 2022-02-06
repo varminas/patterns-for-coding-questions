@@ -94,6 +94,25 @@ func FindMaxFruitCountOf2Types(input []string) int {
 	return maxSize
 }
 
+// 5. Longest Substring with Distinct Characters (hard)
+func FindNoRepeatSubstring(input string) int {
+	windowStart := 0
+	maxLength := 0
+	charIndexMap := &hashmap.HashMap{}
+	for windowEnd := 0; windowEnd < len(input); windowEnd++ {
+		rightChar := input[windowEnd]
+		val, ok := charIndexMap.Get(rightChar)
+		if ok {
+			windowStart = math.Max(windowStart, val.(int)+1)
+		} else {
+			charIndexMap.Set(rightChar, windowEnd)
+			maxLength = math.Max(maxLength, windowEnd-windowStart+1)
+		}
+
+	}
+	return maxLength
+}
+
 func getOrDefault(inputMap *hashmap.HashMap, str interface{}, defaultValue int) int {
 	currentLeftCount, ok := inputMap.Get(str)
 	if ok {

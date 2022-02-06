@@ -2,6 +2,8 @@ package slidingwindow
 
 import (
 	"fmt"
+	"reflect"
+	"runtime"
 	"testing"
 )
 
@@ -11,7 +13,7 @@ func TestSlidingWindow_maxSumSubarrayOfSizeK3(t *testing.T) {
 
 	got := FindMaxSumSubArray(3, input)
 	if got != want {
-		t.Errorf(errorString(input, got, want))
+		t.Errorf(errorString("FindMaxSumSubArray", input, got, want))
 	}
 }
 
@@ -21,7 +23,7 @@ func TestSlidingWindow_maxSumSubarrayOfSizeK2(t *testing.T) {
 
 	got := FindMaxSumSubArray(2, input)
 	if got != want {
-		t.Errorf(errorString(input, got, want))
+		t.Errorf(errorString("FindMaxSumSubArray", input, got, want))
 	}
 }
 
@@ -31,7 +33,7 @@ func TestSlidingWindow_FindMinSubArray_2(t *testing.T) {
 
 	got := FindMinSubArray(7, input)
 	if got != want {
-		t.Errorf(errorString(input, got, want))
+		t.Errorf(errorString("FindMinSubArray", input, got, want))
 	}
 }
 
@@ -41,7 +43,7 @@ func TestSlidingWindow_FindMinSubArray_1(t *testing.T) {
 
 	got := FindMinSubArray(7, input)
 	if got != want {
-		t.Errorf(errorString(input, got, want))
+		t.Errorf(errorString("FindMinSubArray", input, got, want))
 	}
 }
 
@@ -51,7 +53,7 @@ func TestSlidingWindow_FindMinSubArray_3(t *testing.T) {
 
 	got := FindMinSubArray(8, input)
 	if got != want {
-		t.Errorf(errorString(input, got, want))
+		t.Errorf(errorString("FindMinSubArray", input, got, want))
 	}
 }
 
@@ -61,7 +63,7 @@ func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K2(t *testing.T) {
 
 	got := FindLongestSubstringWithMaxKDistChars(input, 2)
 	if got != want {
-		t.Errorf(errorStringStr(input, got, want))
+		t.Errorf(errorString("FindLongestSubstringWithMaxKDistChars", input, got, want))
 	}
 }
 
@@ -71,7 +73,7 @@ func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K1(t *testing.T) {
 
 	got := FindLongestSubstringWithMaxKDistChars(input, 1)
 	if got != want {
-		t.Errorf(errorStringStr(input, got, want))
+		t.Errorf(errorString("FindLongestSubstringWithMaxKDistChars", input, got, want))
 	}
 }
 
@@ -81,7 +83,7 @@ func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K3(t *testing.T) {
 
 	got := FindLongestSubstringWithMaxKDistChars(input, 3)
 	if got != want {
-		t.Errorf(errorStringStr(input, got, want))
+		t.Errorf(errorString("FindLongestSubstringWithMaxKDistChars", input, got, want))
 	}
 }
 
@@ -91,7 +93,7 @@ func TestSlidingWindow_FindLongestSubstringWithMaxKDistChars_K10(t *testing.T) {
 
 	got := FindLongestSubstringWithMaxKDistChars(input, 10)
 	if got != want {
-		t.Errorf(errorStringStr(input, got, want))
+		t.Errorf(errorString("FindLongestSubstringWithMaxKDistChars", input, got, want))
 	}
 }
 
@@ -101,7 +103,7 @@ func TestSlidingWindow_FindMaxFruitCountOf2Types_V1(t *testing.T) {
 
 	got := FindMaxFruitCountOf2Types(input)
 	if got != want {
-		t.Errorf(errorStringArr(input, got, want))
+		t.Errorf(errorString("FindMaxFruitCountOf2Types", input, got, want))
 	}
 }
 
@@ -111,18 +113,54 @@ func TestSlidingWindow_FindMaxFruitCountOf2Types_V2(t *testing.T) {
 
 	got := FindMaxFruitCountOf2Types(input)
 	if got != want {
-		t.Errorf(errorStringArr(input, got, want))
+		t.Errorf(errorString("FindMaxFruitCountOf2Types", input, got, want))
 	}
 }
 
-func errorString(input []int, got int, want int) string {
-	return fmt.Sprintf("findMaxSumSubArray(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
+func TestFindNoRepeatSubstring_V1(t *testing.T) {
+	want := 3
+	input := "aabccbb"
+
+	got := FindNoRepeatSubstring(input)
+	if got != want {
+		t.Errorf(errorString("FindNoRepeatSubstring", input, got, want))
+	}
 }
 
-func errorStringStr(input string, got int, want int) string {
-	return fmt.Sprintf("FindLongestSubstringWithMaxKDistChars(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
+func TestFindNoRepeatSubstring_V2(t *testing.T) {
+	want := 2
+	input := "abbbb"
+
+	got := FindNoRepeatSubstring(input)
+	if got != want {
+		t.Errorf(errorString("FindNoRepeatSubstring", input, got, want))
+	}
 }
 
-func errorStringArr(input []string, got int, want int) string {
-	return fmt.Sprintf("FindMaxFruitCountOf2Types(%#v) \n\ngot= %#v \n\nwant=%#v", input, got, want)
+func TestFindNoRepeatSubstring_V3(t *testing.T) {
+	want := 3
+	input := "abccde"
+
+	got := FindNoRepeatSubstring(input)
+	if got != want {
+		t.Errorf(errorString("FindNoRepeatSubstring", input, got, want))
+	}
+}
+
+func TestFindNoRepeatSubstring_V4(t *testing.T) {
+	want := 25
+	input := "abcdefghijklmnoprstqvwxyz"
+
+	got := FindNoRepeatSubstring(input)
+	if got != want {
+		t.Errorf(errorString("FindNoRepeatSubstring", input, got, want))
+	}
+}
+
+func errorString(funcName string, input interface{}, got int, want int) string {
+	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
+}
+
+func getFuncName(handler interface{}) string {
+	return runtime.FuncForPC(reflect.ValueOf(handler).Pointer()).Name()
 }
