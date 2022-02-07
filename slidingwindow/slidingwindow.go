@@ -136,6 +136,30 @@ func FindCharacterReplacementLength(inputStr string, k int) int {
 	return maxLength
 }
 
+// 7. Longest Subarray with Ones after Replacement (hard)
+func FindReplacingOnesLength(arr []int, k int) int {
+	maxLength := 0
+	windowStart := 0
+	maxRepeatedValuesCount := 0
+
+	for windowEnd, rightValue := range arr {
+		if rightValue == 1 {
+			maxRepeatedValuesCount++
+		}
+
+		if windowEnd-windowStart+1-maxRepeatedValuesCount > k {
+			leftValue := arr[windowStart]
+			if leftValue == 1 {
+				maxRepeatedValuesCount--
+			}
+			windowStart++
+		}
+
+		maxLength = math.Max(maxLength, windowEnd-windowStart+1)
+	}
+	return maxLength
+}
+
 func getOrDefault(inputMap *hashmap.HashMap, str interface{}, defaultValue int) int {
 	currentLeftCount, ok := inputMap.Get(str)
 	if ok {

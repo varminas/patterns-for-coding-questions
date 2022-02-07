@@ -187,6 +187,26 @@ func TestFindCharacterReplacementLength_V3(t *testing.T) {
 	}
 }
 
+func TestFindReplacingOnesLength_V1(t *testing.T) {
+	want := 6
+	input := []int{0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1}
+
+	got := FindReplacingOnesLength(input, 2)
+	if got != want {
+		t.Errorf(errorString("FindReplacingOnesLength", input, got, want))
+	}
+}
+
+func TestFindReplacingOnesLength_V2(t *testing.T) {
+	want := 9
+	input := []int{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}
+
+	got := FindReplacingOnesLength(input, 3)
+	if got != want {
+		t.Errorf(errorString("FindReplacingOnesLength", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got int, want int) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
