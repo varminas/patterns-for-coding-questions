@@ -160,6 +160,48 @@ func FindReplacingOnesLength(arr []int, k int) int {
 	return maxLength
 }
 
+// 8. Problem Challenge 1. Permutation in a String (hard)
+func HasStringPermutation(inputStr string, pattern string) bool {
+	input := []rune(inputStr)
+	windowStart := 0
+	matchingCharsCount := 0
+	//matchingCharsMap := make(map[string]int)
+
+	patternCharsCountMap := make(map[string]int)
+	for _, patternValue := range pattern {
+		char := string(patternValue)
+		patternCharsCountMap[char] = getOrDefaultOnMap(patternCharsCountMap, char, 0) + 1
+	}
+
+	for _, inputCharAsRune := range input {
+		inputChar := string(inputCharAsRune)
+		_, ok := patternCharsCountMap[inputChar]
+		if ok {
+			//matchingCharsMap[inputChar] = getOrDefaultOnMap(matchingCharsMap, inputChar, 0) + 1
+			matchingCharsCount++
+		} else {
+			windowStart++
+			if matchingCharsCount > 0 {
+				matchingCharsCount--
+			}
+		}
+
+		if matchingCharsCount == len(pattern) {
+			return true
+		}
+	}
+	return false
+}
+
+func getOrDefaultOnMap(inputMap map[string]int, str string, defaultValue int) int {
+	currentLeftCount, exists := inputMap[str]
+	if exists {
+		return currentLeftCount
+	} else {
+		return defaultValue
+	}
+}
+
 func getOrDefault(inputMap *hashmap.HashMap, str interface{}, defaultValue int) int {
 	currentLeftCount, ok := inputMap.Get(str)
 	if ok {

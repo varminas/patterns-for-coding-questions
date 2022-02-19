@@ -207,7 +207,47 @@ func TestFindReplacingOnesLength_V2(t *testing.T) {
 	}
 }
 
-func errorString(funcName string, input interface{}, got int, want int) string {
+func TestHasStringPermutation_V1(t *testing.T) {
+	want := true
+	input := "oidbcaf"
+
+	got := HasStringPermutation(input, "abc")
+	if got != want {
+		t.Errorf(errorString("HasStringPermutation", input, got, want))
+	}
+}
+
+func TestHasStringPermutation_V2(t *testing.T) {
+	want := false
+	input := "odicf"
+
+	got := HasStringPermutation(input, "dc")
+	if got != want {
+		t.Errorf(errorString("HasStringPermutation", input, got, want))
+	}
+}
+
+func TestHasStringPermutation_V3(t *testing.T) {
+	want := true
+	input := "bcdxabcdy"
+
+	got := HasStringPermutation(input, "bcdyabcdx")
+	if got != want {
+		t.Errorf(errorString("HasStringPermutation", input, got, want))
+	}
+}
+
+func TestHasStringPermutation_V4(t *testing.T) {
+	want := true
+	input := "aaacb"
+
+	got := HasStringPermutation(input, "bca")
+	if got != want {
+		t.Errorf(errorString("HasStringPermutation", input, got, want))
+	}
+}
+
+func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
 
