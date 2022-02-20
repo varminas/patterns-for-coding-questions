@@ -247,6 +247,27 @@ func TestHasStringPermutation_V4(t *testing.T) {
 	}
 }
 
+// 9. String Anagrams (hard)
+func TestFindListOfStartingIndicesOfAnagrams_V1(t *testing.T) {
+	want := []int{1, 2}
+	input := "ppqp"
+
+	got := FindListOfStartingIndicesOfAnagrams(input, "pq")
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("FindListOfStartingIndicesOfAnagrams", input, got, want))
+	}
+}
+
+func TestFindListOfStartingIndicesOfAnagrams_V2(t *testing.T) {
+	want := []int{2, 3, 4}
+	input := "abbcabc"
+
+	got := FindListOfStartingIndicesOfAnagrams("abbcabc", "abc")
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("FindListOfStartingIndicesOfAnagrams", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }

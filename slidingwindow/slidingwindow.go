@@ -2,6 +2,7 @@
 package slidingwindow
 
 import (
+	"fmt"
 	"github.com/cornelk/hashmap"
 	"github.com/varminas/patterns-for-coding-questions/math"
 )
@@ -191,6 +192,48 @@ func HasStringPermutation(inputStr string, pattern string) bool {
 		}
 	}
 	return false
+}
+
+// 9. String Anagrams (hard)
+func FindListOfStartingIndicesOfAnagrams(inputStr string, pattern string) []int {
+	input := []rune(inputStr)
+	windowStart := 0
+	patternCharsMap := make(map[string]int)
+	matchingCharsCount := 0
+	patternLength := len(pattern)
+	startingIndices := []int{}
+	for _, charRune := range pattern {
+		char := string(charRune)
+		patternCharsMap[char] = getOrDefaultOnMap(patternCharsMap, char, 0) + 1
+	}
+
+	for windowEnd, charRightRune := range input {
+		charRight := string(charRightRune)
+		charRightCount, ok := patternCharsMap[charRight]
+		if ok {
+			patternCharsMap[charRight] = charRightCount - 1
+			matchingCharsCount++
+			if charRightCount == 0 {
+				for start := windowStart; start < windowEnd; start++ {
+					charLeft := string(input[start])
+					charLeftCount, _ := patternCharsMap[charLeft]
+					patternCharsMap[charLeft] = charLeftCount + 1
+				}
+				matchingCharsCount = 1
+				windowStart = windowEnd
+			}
+		}
+
+		if matchingCharsCount == patternLength {
+			startingIndices = append(startingIndices, windowStart)
+			patternCharsMap[string(input[windowStart])]++
+			matchingCharsCount--
+			windowStart++
+		}
+		fmt.Printf("[%d-%d], %s\n", windowStart, windowEnd, charRight)
+	}
+
+	return startingIndices
 }
 
 func getOrDefaultOnMap(inputMap map[string]int, str string, defaultValue int) int {
