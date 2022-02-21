@@ -2,7 +2,6 @@
 package slidingwindow
 
 import (
-	"fmt"
 	"github.com/cornelk/hashmap"
 	"github.com/varminas/patterns-for-coding-questions/math"
 )
@@ -230,10 +229,61 @@ func FindListOfStartingIndicesOfAnagrams(inputStr string, pattern string) []int 
 			matchingCharsCount--
 			windowStart++
 		}
-		fmt.Printf("[%d-%d], %s\n", windowStart, windowEnd, charRight)
 	}
 
 	return startingIndices
+}
+
+// 10. Smallest Window containing Substring (hard)
+func FindSmallestWindowContainingSubstring(input string, patternAsString string) string {
+	patternArray := []rune(patternAsString)
+	patternCharsMap := make(map[string]int)
+
+	windowStart := 0
+	matched := 0
+	minLength := len(input) + 1
+	subStrStart := 0
+
+	for _, char := range patternArray {
+		charAsString := string(char)
+		patternCharsMap[charAsString]++
+	}
+
+	for windowEnd, rightCharAsRune := range input {
+		rightChar := string(rightCharAsRune)
+
+		rightCharCount, ok := patternCharsMap[rightChar]
+		if ok {
+			rightCharCount--
+			patternCharsMap[rightChar] = rightCharCount
+			if rightCharCount >= 0 {
+				matched++
+			}
+		}
+
+		for matched == len(patternAsString) {
+			if minLength > windowEnd-windowStart+1 {
+				minLength = windowEnd - windowStart + 1
+				subStrStart = windowStart
+			}
+
+			leftChar := string(input[windowStart])
+			windowStart++
+			leftCharCount, leftCharFound := patternCharsMap[leftChar]
+			if leftCharFound {
+				if leftCharCount == 0 {
+					matched--
+				}
+				patternCharsMap[leftChar] = leftCharCount + 1
+			}
+		}
+	}
+
+	if minLength > len(input) {
+		return ""
+	} else {
+		return input[subStrStart : subStrStart+minLength]
+	}
 }
 
 func getOrDefaultOnMap(inputMap map[string]int, str string, defaultValue int) int {

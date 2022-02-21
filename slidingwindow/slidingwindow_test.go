@@ -262,9 +262,50 @@ func TestFindListOfStartingIndicesOfAnagrams_V2(t *testing.T) {
 	want := []int{2, 3, 4}
 	input := "abbcabc"
 
-	got := FindListOfStartingIndicesOfAnagrams("abbcabc", "abc")
+	got := FindListOfStartingIndicesOfAnagrams(input, "abc")
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf(errorString("FindListOfStartingIndicesOfAnagrams", input, got, want))
+	}
+}
+
+// 10. Smallest Window containing Substring (hard)
+func TestFindSmallestWindowContainingSubstring_V1(t *testing.T) {
+	want := "abdec"
+	input := "aabdec"
+
+	got := FindSmallestWindowContainingSubstring(input, "abc")
+	if got != want {
+		t.Errorf(errorString("FindSmallestWindowContainingSubstring", input, got, want))
+	}
+}
+
+func TestFindSmallestWindowContainingSubstring_V2(t *testing.T) {
+	want := "aabdec"
+	input := "aabdec"
+
+	got := FindSmallestWindowContainingSubstring(input, "abac")
+	if got != want {
+		t.Errorf(errorString("FindSmallestWindowContainingSubstring", input, got, want))
+	}
+}
+
+func TestFindSmallestWindowContainingSubstring_V3(t *testing.T) {
+	want := "bca"
+	input := "abdbca"
+
+	got := FindSmallestWindowContainingSubstring(input, "abc")
+	if got != want {
+		t.Errorf(errorString("FindSmallestWindowContainingSubstring", input, got, want))
+	}
+}
+
+func TestFindSmallestWindowContainingSubstring_V4(t *testing.T) {
+	want := ""
+	input := "adcad"
+
+	got := FindSmallestWindowContainingSubstring(input, "abc")
+	if got != want {
+		t.Errorf(errorString("FindSmallestWindowContainingSubstring", input, got, want))
 	}
 }
 
