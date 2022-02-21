@@ -286,6 +286,61 @@ func FindSmallestWindowContainingSubstring(input string, patternAsString string)
 	}
 }
 
+// 11. Words Concatenation (hard)
+func FindWordsConcatenation(input string, words []string) []int {
+	wordFrequencyMap := make(map[string]int)
+	for _, word := range words {
+		value, ok := wordFrequencyMap[word]
+		if ok {
+			wordFrequencyMap[word] = value + 1
+		} else {
+			wordFrequencyMap[word] = 1
+		}
+	}
+
+	resultIndices := []int{}
+	wordsCount := len(words)
+	wordLength := len(words[0])
+
+	for i := 0; i <= len(input)-wordsCount*wordLength; i++ {
+		wordsSeen := make(map[string]int)
+		for j := 0; j < wordsCount; j++ {
+			nextWordIndex := i + j*wordLength
+			word := input[nextWordIndex : nextWordIndex+wordLength]
+			_, ok := wordFrequencyMap[word]
+			if !ok {
+				break
+			}
+
+			value, ok := wordsSeen[word]
+			if ok {
+				wordsSeen[word] = value + 1
+			} else {
+				wordsSeen[word] = 1
+			}
+
+			wordSeenValue, wordIsSeen := wordsSeen[word]
+			if !wordIsSeen {
+				wordSeenValue = 0
+			}
+			freqValue, freqFound := wordFrequencyMap[word]
+			if !freqFound {
+				freqValue = 0
+			}
+
+			if wordSeenValue > freqValue {
+				break
+			}
+
+			if j+1 == wordsCount {
+				resultIndices = append(resultIndices, i)
+			}
+		}
+	}
+
+	return resultIndices
+}
+
 func getOrDefaultOnMap(inputMap map[string]int, str string, defaultValue int) int {
 	currentLeftCount, exists := inputMap[str]
 	if exists {

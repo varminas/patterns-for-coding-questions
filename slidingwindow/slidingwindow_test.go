@@ -309,6 +309,27 @@ func TestFindSmallestWindowContainingSubstring_V4(t *testing.T) {
 	}
 }
 
+// 11. Words Concatenation (hard)
+func TestFindWordsConcatenation_V1(t *testing.T) {
+	want := []int{0, 3}
+	input := "catfoxcat"
+
+	got := FindWordsConcatenation(input, []string{"cat", "fox"})
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("FindWordsConcatenation", input, got, want))
+	}
+}
+
+func TestFindWordsConcatenation_V2(t *testing.T) {
+	want := []int{3}
+	input := "catcatfoxfox"
+
+	got := FindWordsConcatenation(input, []string{"cat", "fox"})
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("FindWordsConcatenation", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
