@@ -27,27 +27,27 @@ func TestPairWithTargetSum_v2(t *testing.T) {
 	}
 }
 
-//// 2. Remove Duplicates (easy)
-//func TestRemoveDuplicates_v1(t *testing.T) {
-//	want := 4
-//	input := []int{2, 3, 3, 3, 6, 9, 9}
-//
-//	got := RemoveDuplicates(input)
-//	if got != want {
-//		t.Errorf(errorString("RemoveDuplicates", input, got, want))
-//	}
-//}
-//
-//func TestRemoveDuplicates_v2(t *testing.T) {
-//	want := 2
-//	input := []int{2, 2, 2, 11}
-//
-//	got := RemoveDuplicates(input)
-//	if got != want {
-//		t.Errorf(errorString("RemoveDuplicates", input, got, want))
-//	}
-//}
-//
+// 2. Remove Duplicates (easy)
+func TestRemoveDuplicates_v1(t *testing.T) {
+	want := 4
+	input := []int{2, 3, 3, 3, 6, 9, 9}
+
+	got := RemoveDuplicates(input)
+	if got != want {
+		t.Errorf(errorString("RemoveDuplicates", input, got, want))
+	}
+}
+
+func TestRemoveDuplicates_v2(t *testing.T) {
+	want := 2
+	input := []int{2, 2, 2, 11}
+
+	got := RemoveDuplicates(input)
+	if got != want {
+		t.Errorf(errorString("RemoveDuplicates", input, got, want))
+	}
+}
+
 //// 3. Squaring a Sorted Array (easy)
 //func TestSquaringSortedArray_v1(t *testing.T) {
 //	want := []int{0, 1, 4, 4, 9}

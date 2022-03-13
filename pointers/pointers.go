@@ -21,8 +21,19 @@ func PairWithTargetSum(input []int, target int) []int {
 
 // 2. Remove Duplicates (easy)
 func RemoveDuplicates(input []int) int {
-	// TODO
-	return 0
+	if len(input) == 1 {
+		return 1
+	}
+
+	nextNonDuplicate := 1
+
+	for next := 0; next < len(input); next++ {
+		if input[next] != input[nextNonDuplicate-1] {
+			input[nextNonDuplicate] = input[next]
+			nextNonDuplicate++
+		}
+	}
+	return nextNonDuplicate
 }
 
 // 3. Squaring a Sorted Array (easy)
