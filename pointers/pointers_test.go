@@ -48,6 +48,27 @@ func TestRemoveDuplicates_v2(t *testing.T) {
 	}
 }
 
+// 2.1. Remove Duplicates (easy) - unsorted array and target
+func TestRemoveDuplicatesFromUnsorted_v1(t *testing.T) {
+	want := 4
+	input := []int{3, 2, 3, 6, 3, 10, 9, 3}
+
+	got := RemoveDuplicatesFromUnsorted(input, 3)
+	if got != want {
+		t.Errorf(errorString("RemoveDuplicatesFromUnsorted", input, got, want))
+	}
+}
+
+func TestRemoveDuplicatesFromUnsorted_v2(t *testing.T) {
+	want := 2
+	input := []int{2, 11, 2, 2, 1}
+
+	got := RemoveDuplicatesFromUnsorted(input, 2)
+	if got != want {
+		t.Errorf(errorString("RemoveDuplicatesFromUnsorted", input, got, want))
+	}
+}
+
 //// 3. Squaring a Sorted Array (easy)
 //func TestSquaringSortedArray_v1(t *testing.T) {
 //	want := []int{0, 1, 4, 4, 9}

@@ -36,6 +36,23 @@ func RemoveDuplicates(input []int) int {
 	return nextNonDuplicate
 }
 
+// 2.1. Remove Duplicates (easy) - unsorted array and target
+func RemoveDuplicatesFromUnsorted(input []int, key int) int {
+	if len(input) == 1 {
+		return 1
+	}
+
+	nextElement := 0
+
+	for next := 0; next < len(input); next++ {
+		if input[next] != key {
+			input[nextElement] = input[next]
+			nextElement++
+		}
+	}
+	return nextElement
+}
+
 // 3. Squaring a Sorted Array (easy)
 func SquaringSortedArray(input []int) []int {
 	// TODO
