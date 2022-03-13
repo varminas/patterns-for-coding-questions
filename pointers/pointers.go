@@ -55,6 +55,24 @@ func RemoveDuplicatesFromUnsorted(input []int, key int) int {
 
 // 3. Squaring a Sorted Array (easy)
 func SquaringSortedArray(input []int) []int {
-	// TODO
-	return nil
+	squares := make([]int, len(input))
+
+	begin := 0
+	end := len(input) - 1
+	highestSquareIndex := len(input) - 1
+
+	for begin <= end {
+		beginSquare := input[begin] * input[begin]
+		endSquare := input[end] * input[end]
+		if beginSquare > endSquare {
+			squares[highestSquareIndex] = beginSquare
+			highestSquareIndex--
+			begin++
+		} else {
+			squares[highestSquareIndex] = endSquare
+			highestSquareIndex--
+			end--
+		}
+	}
+	return squares
 }

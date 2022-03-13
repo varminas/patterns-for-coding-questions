@@ -69,26 +69,26 @@ func TestRemoveDuplicatesFromUnsorted_v2(t *testing.T) {
 	}
 }
 
-//// 3. Squaring a Sorted Array (easy)
-//func TestSquaringSortedArray_v1(t *testing.T) {
-//	want := []int{0, 1, 4, 4, 9}
-//	input := []int{-2, -1, 0, 2, 3}
-//
-//	got := SquaringSortedArray(input)
-//	if !reflect.DeepEqual(got,want) {
-//		t.Errorf(errorString("SquaringSortedArray", input, got, want))
-//	}
-//}
-//
-//func TestSquaringSortedArray_v2(t *testing.T) {
-//	want := []int{0, 1, 1, 4, 9}
-//	input := []int{-3, -1, 0, 1, 2}
-//
-//	got := SquaringSortedArray(input)
-//	if !reflect.DeepEqual(got,want) {
-//		t.Errorf(errorString("SquaringSortedArray", input, got, want))
-//	}
-//}
+// 3. Squaring a Sorted Array (easy)
+func TestSquaringSortedArray_v1(t *testing.T) {
+	want := []int{0, 1, 4, 4, 9}
+	input := []int{-2, -1, 0, 2, 3}
+
+	got := SquaringSortedArray(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("SquaringSortedArray", input, got, want))
+	}
+}
+
+func TestSquaringSortedArray_v2(t *testing.T) {
+	want := []int{0, 1, 1, 4, 9}
+	input := []int{-3, -1, 0, 1, 2}
+
+	got := SquaringSortedArray(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("SquaringSortedArray", input, got, want))
+	}
+}
 
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
