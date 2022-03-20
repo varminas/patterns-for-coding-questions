@@ -1,5 +1,9 @@
 package pointers
 
+import (
+	"sort"
+)
+
 // 1. Pair with Target Sum (easy)
 func PairWithTargetSum(input []int, target int) []int {
 	beginPointer := 0
@@ -75,4 +79,40 @@ func SquaringSortedArray(input []int) []int {
 		}
 	}
 	return squares
+}
+
+// 4. Triplet Sum to Zero (medium)
+func TripletSumToZero(arr []int) [][]int {
+	sort.Ints(arr)
+
+	triplets := make([][]int, 0)
+	for i := 0; i < len(arr)-2; i++ {
+		if i > 0 && arr[i] == arr[i-1] {
+			continue
+		}
+		searchPair(arr, -arr[i], i+1, &triplets)
+	}
+	return triplets
+}
+
+func searchPair(arr []int, targetSum int, left int, triplets *[][]int) {
+	right := len(arr) - 1
+	for left < right {
+		currentSum := arr[left] + arr[right]
+		if currentSum == targetSum {
+			*triplets = append(*triplets, []int{-targetSum, arr[left], arr[right]})
+			left++
+			right--
+			for left < right && arr[left] == arr[left-1] {
+				left++
+			}
+			for left < right && arr[right] == arr[right+1] {
+				right--
+			}
+		} else if targetSum > currentSum {
+			left++
+		} else {
+			right--
+		}
+	}
 }

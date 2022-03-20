@@ -90,6 +90,27 @@ func TestSquaringSortedArray_v2(t *testing.T) {
 	}
 }
 
+// 4. Triplet Sum to Zero (medium)
+func TestTripletSumToZero_v1(t *testing.T) {
+	input := []int{-3, 0, 1, 2, -1, 1, -2}
+	want := [][]int{{-3, 1, 2}, {-2, 0, 2}, {-2, 1, 1}, {-1, 0, 1}}
+
+	got := TripletSumToZero(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("TripletSumToZero", input, got, want))
+	}
+}
+
+func TestTripletSumToZero_v2(t *testing.T) {
+	input := []int{-5, 2, -1, -2, 3}
+	want := [][]int{{-5, 2, 3}, {-2, -1, 3}}
+
+	got := TripletSumToZero(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("TripletSumToZero", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
