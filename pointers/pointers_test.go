@@ -111,6 +111,36 @@ func TestTripletSumToZero_v2(t *testing.T) {
 	}
 }
 
+func TestTripletSumCloseToTarget_v1(t *testing.T) {
+	input := []int{-2, 0, 1, 2}
+	want := 1
+
+	got := TripletSumCloseToTarget(input, 2)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("TripletSumCloseToTarget", input, got, want))
+	}
+}
+
+func TestTripletSumCloseToTarget_v2(t *testing.T) {
+	input := []int{-3, -1, 1, 2}
+	want := 0
+
+	got := TripletSumCloseToTarget(input, 1)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("TripletSumCloseToTarget", input, got, want))
+	}
+}
+
+func TestTripletSumCloseToTarget_v3(t *testing.T) {
+	input := []int{1, 0, 1, 1}
+	want := 3
+
+	got := TripletSumCloseToTarget(input, 100)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("TripletSumCloseToTarget", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }

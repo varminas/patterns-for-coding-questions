@@ -1,6 +1,7 @@
 package pointers
 
 import (
+	"math"
 	"sort"
 )
 
@@ -115,4 +116,34 @@ func searchPair(arr []int, targetSum int, left int, triplets *[][]int) {
 			right--
 		}
 	}
+}
+
+//	5. Triplet Sum Close to Target (medium)
+func TripletSumCloseToTarget(arr []int, targetSum int) int {
+	sort.Ints(arr)
+
+	smallestDifference := math.MaxInt32
+	for i := 0; i < len(arr)-2; i++ {
+		left := i + 1
+		right := len(arr) - 1
+		for left < right {
+			targetDiff := targetSum - arr[i] - arr[left] - arr[right]
+			if targetDiff == 0 {
+				return targetSum
+			}
+
+			if math.Abs(float64(targetDiff)) < math.Abs(float64(smallestDifference)) ||
+				(math.Abs(float64(targetDiff)) == math.Abs(float64(smallestDifference)) &&
+					targetDiff > smallestDifference) {
+				smallestDifference = targetDiff
+			}
+
+			if targetDiff > 0 {
+				left++
+			} else {
+				right--
+			}
+		}
+	}
+	return targetSum - smallestDifference
 }
