@@ -1,6 +1,7 @@
 package pointers
 
 import (
+	"fmt"
 	"math"
 	"sort"
 )
@@ -146,4 +147,37 @@ func TripletSumCloseToTarget(arr []int, targetSum int) int {
 		}
 	}
 	return targetSum - smallestDifference
+}
+
+// 6. Triplets with Smaller Sum (medium)
+func TripletsWithSmallerSum(arr []int, target int) int {
+	sort.Ints(arr)
+
+	smallerCount := 0
+	for i := 0; i < len(arr)-2; i++ {
+		left := i + 1
+		right := len(arr) - 1
+		targetSum := target - arr[i]
+		for left < right {
+			if arr[left]+arr[right] < targetSum {
+				fmt.Printf("[%d %d %d]\n", arr[i], arr[left], arr[right])
+				smallerCount += right - left
+				left++
+			} else {
+				right--
+			}
+		}
+	}
+	fmt.Println("")
+	return smallerCount
+}
+
+// 7. Subarrays with Product Less than a Target (medium)
+func SubarraysWithProductLessThanTarget(arr []int, target int) [][]int {
+	return nil
+}
+
+// 8. Dutch National Flag Problem (medium)
+func DutchNationalFlagProblem(arr []int) []int {
+	return nil
 }
