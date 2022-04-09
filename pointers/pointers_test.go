@@ -162,26 +162,26 @@ func TestTripletsWithSmallerSum_v2(t *testing.T) {
 	}
 }
 
-//// 7. Subarrays with Product Less than a Target (medium)
-//func TestSubarraysWithProductLessThanTarget_v1(t *testing.T) {
-//	input := []int{2, 5, 3, 10}
-//	want := [][]int{{2}, {5}, {2, 5}, {3}, {5, 3}, {10}}
-//
-//	got := SubarraysWithProductLessThanTarget(input, 30)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("SubarraysWithProductLessThanTarget", input, got, want))
-//	}
-//}
+// 7. Subarrays with Product Less than a Target (medium)
+func TestSubarraysWithProductLessThanTarget_v1(t *testing.T) {
+	input := []int{2, 5, 3, 10}
+	want := [][]int{{2}, {5}, {5, 2}, {3}, {3, 5}, {10}}
 
-//func TestSubarraysWithProductLessThanTarget_v2(t *testing.T) {
-//	input := []int{8, 2, 6, 5}
-//	want := [][]int{{8}, {2}, {8, 2}, {6}, {2, 6}, {5}, {6, 5}}
-//
-//	got := SubarraysWithProductLessThanTarget(input, 50)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("SubarraysWithProductLessThanTarget", input, got, want))
-//	}
-//}
+	got := SubarraysWithProductLessThanTarget(input, 30)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("SubarraysWithProductLessThanTarget", input, got, want))
+	}
+}
+
+func TestSubarraysWithProductLessThanTarget_v2(t *testing.T) {
+	input := []int{8, 2, 6, 5}
+	want := [][]int{{8}, {2}, {2, 8}, {6}, {6, 2}, {5}, {5, 6}}
+
+	got := SubarraysWithProductLessThanTarget(input, 50)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("SubarraysWithProductLessThanTarget", input, got, want))
+	}
+}
 
 //// 8. Dutch National Flag Problem (medium)
 //func TestDutchNationalFlagProblem_v2(t *testing.T) {

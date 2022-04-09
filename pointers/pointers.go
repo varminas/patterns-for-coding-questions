@@ -174,7 +174,23 @@ func TripletsWithSmallerSum(arr []int, target int) int {
 
 // 7. Subarrays with Product Less than a Target (medium)
 func SubarraysWithProductLessThanTarget(arr []int, target int) [][]int {
-	return nil
+
+	var result = make([][]int, 0)
+	product := 1
+	left := 0
+	for right := 0; right < len(arr); right++ {
+		product *= arr[right]
+		for product >= target && left < len(arr) {
+			product /= arr[left]
+			left++
+		}
+		var tempList = make([]int, 0)
+		for i := right; i >= left; i-- {
+			tempList = append(tempList, arr[i])
+			result = append(result, tempList)
+		}
+	}
+	return result
 }
 
 // 8. Dutch National Flag Problem (medium)
