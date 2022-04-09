@@ -195,5 +195,25 @@ func SubarraysWithProductLessThanTarget(arr []int, target int) [][]int {
 
 // 8. Dutch National Flag Problem (medium)
 func DutchNationalFlagProblem(arr []int) []int {
-	return nil
+	low := 0
+	high := len(arr) - 1
+	for i := 0; i <= high; {
+		if arr[i] == 0 {
+			swap(arr, i, low)
+			i++
+			low++
+		} else if arr[i] == 1 {
+			i++
+		} else {
+			swap(arr, i, high)
+			high--
+		}
+	}
+	return arr
+}
+
+func swap(arr []int, i int, j int) {
+	tmp := arr[i]
+	arr[i] = arr[j]
+	arr[j] = tmp
 }

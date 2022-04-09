@@ -183,16 +183,26 @@ func TestSubarraysWithProductLessThanTarget_v2(t *testing.T) {
 	}
 }
 
-//// 8. Dutch National Flag Problem (medium)
-//func TestDutchNationalFlagProblem_v2(t *testing.T) {
-//	input := []int{8, 2, 6, 5}
-//	want := [][]int{{8}, {2}, {8, 2}, {6}, {2, 6}, {5}, {6, 5}}
-//
-//	got := DutchNationalFlagProblem(input)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("DutchNationalFlagProblem", input, got, want))
-//	}
-//}
+// 8. Dutch National Flag Problem (medium)
+func TestDutchNationalFlagProblem_v1(t *testing.T) {
+	input := []int{1, 0, 2, 1, 0}
+	want := []int{0, 0, 1, 1, 2}
+
+	got := DutchNationalFlagProblem(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("DutchNationalFlagProblem", input, got, want))
+	}
+}
+
+func TestDutchNationalFlagProblem_v2(t *testing.T) {
+	input := []int{2, 2, 0, 1, 2, 0}
+	want := []int{0, 0, 1, 2, 2, 2}
+
+	got := DutchNationalFlagProblem(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("DutchNationalFlagProblem", input, got, want))
+	}
+}
 
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
