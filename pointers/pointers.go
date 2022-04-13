@@ -217,3 +217,45 @@ func swap(arr []int, i int, j int) {
 	arr[i] = arr[j]
 	arr[j] = tmp
 }
+
+// 9. Quadruple Sum to Target (medium)
+func QuadrupleSumToTarget(arr []int, target int) [][]int {
+	sort.Ints(arr)
+
+	quadruplets := make([][]int, 0)
+	for i := 0; i < len(arr)-3; i++ {
+		if i > 0 && arr[i] == arr[i-1] {
+			continue
+		}
+		for j := i + 1; j < len(arr)-2; j++ {
+			if j > i+1 && arr[j] == arr[j-1] {
+				continue
+			}
+			searchPairs(arr, target, i, j, &quadruplets)
+		}
+	}
+	return quadruplets
+}
+
+func searchPairs(arr []int, targerSum int, first int, second int, quadruplets *[][]int) {
+	left := second + 1
+	right := len(arr) - 1
+	for left < right {
+		sum := arr[first] + arr[second] + arr[left] + arr[right]
+		if sum == targerSum {
+			*quadruplets = append(*quadruplets, []int{arr[first], arr[second], arr[left], arr[right]})
+			left++
+			right--
+			for left < right && arr[left] == arr[left-1] {
+				left++
+			}
+			for left < right && arr[right] == arr[right+1] {
+				right--
+			}
+		} else if sum < targerSum {
+			left++
+		} else {
+			right--
+		}
+	}
+}

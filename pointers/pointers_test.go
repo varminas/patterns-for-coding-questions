@@ -204,6 +204,27 @@ func TestDutchNationalFlagProblem_v2(t *testing.T) {
 	}
 }
 
+// 9. Quadruple Sum to Target (medium)
+func TestQuadrupleSumToTarget_v1(t *testing.T) {
+	input := []int{4, 1, 2, -1, 1, -3}
+	want := [][]int{{-3, -1, 1, 4}, {-3, 1, 1, 2}}
+
+	got := QuadrupleSumToTarget(input, 1)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("QuadrupleSumToTarget", input, got, want))
+	}
+}
+
+func TestQuadrupleSumToTarget_v2(t *testing.T) {
+	input := []int{2, 0, -1, 1, -2, 2}
+	want := [][]int{{-2, 0, 2, 2}, {-1, 0, 1, 2}}
+
+	got := QuadrupleSumToTarget(input, 2)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("QuadrupleSumToTarget", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
