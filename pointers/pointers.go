@@ -259,3 +259,13 @@ func searchPairs(arr []int, targerSum int, first int, second int, quadruplets *[
 		}
 	}
 }
+
+// 10. Comparing Strings containing Backspaces (medium)
+func ComparingStringsContainingBackspaces(str1 string, str2 string) bool {
+	return true
+}
+
+// 11. Minimum Window Sort (medium)
+func MinimumWindowSort(arr []int) int {
+	return 0
+}
