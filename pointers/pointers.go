@@ -262,7 +262,65 @@ func searchPairs(arr []int, targerSum int, first int, second int, quadruplets *[
 
 // 10. Comparing Strings containing Backspaces (medium)
 func ComparingStringsContainingBackspaces(str1 string, str2 string) bool {
+	return applyBackspace(str1) == applyBackspace(str2)
+}
+
+func ComparingStringsContainingBackspaces2(str1 string, str2 string) bool {
+	index1 := len(str1) - 1
+	index2 := len(str2) - 1
+	for index1 >= 0 || index2 >= 0 {
+		i1 := getNextValidCharIndex(str1, index1)
+		i2 := getNextValidCharIndex(str2, index2)
+
+		if i1 < 0 && i2 < 0 {
+			return true
+		}
+
+		if i1 < 0 || i2 < 0 {
+			return false
+		}
+		if str1[i1] != str2[i2] {
+			return false
+		}
+		index1 = i1 - 1
+		index2 = i2 - 1
+	}
 	return true
+}
+
+func getNextValidCharIndex(str string, index int) int {
+	backspaceCount := 0
+	for index >= 0 {
+		if string(str[index]) == "#" {
+			backspaceCount++
+		} else if backspaceCount > 0 {
+			backspaceCount--
+		} else {
+			break
+		}
+		index--
+	}
+	return index
+}
+
+func applyBackspace(str string) string {
+	backspace := "#"
+	result := ""
+	left := 0
+	if string(str[0]) != backspace {
+		result = string(str[0])
+	}
+	for i := left + 1; i < len(str); i++ {
+		s := string(str[i])
+		if s == backspace {
+			fmt.Printf("Match at index %d\n", i)
+			result = result[0 : len(result)-1]
+		} else {
+			result = result + s
+		}
+	}
+	fmt.Printf("Result of string %s is %s\n", str, result)
+	return result
 }
 
 // 11. Minimum Window Sort (medium)
