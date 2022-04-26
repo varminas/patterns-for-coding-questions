@@ -325,5 +325,35 @@ func applyBackspace(str string) string {
 
 // 11. Minimum Window Sort (medium)
 func MinimumWindowSort(arr []int) int {
-	return 0
+	low := 0
+	high := len(arr) - 1
+
+	for low < len(arr)-1 && arr[low] <= arr[low+1] {
+		low++
+	}
+
+	if low == len(arr)-1 {
+		return 0
+	}
+
+	for high > 0 && arr[high] >= arr[high-1] {
+		high--
+	}
+
+	subarrayMax := math.MinInt32
+	subarrayMin := math.MaxInt32
+	for k := low; k <= high; k++ {
+		subarrayMax = int(math.Max(float64(subarrayMax), float64(arr[k])))
+		subarrayMin = int(math.Min(float64(subarrayMin), float64(arr[k])))
+	}
+
+	for low > 0 && arr[low-1] > subarrayMin {
+		low--
+	}
+
+	for high < len(arr)-1 && arr[high+1] < subarrayMax {
+		high++
+	}
+
+	return high - low + 1
 }

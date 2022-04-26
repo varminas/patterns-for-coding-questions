@@ -267,45 +267,45 @@ func TestComparingStringsContainingBackspaces_v4(t *testing.T) {
 }
 
 // 11. Minimum Window Sort (medium)
-//func TestMinimumWindowSort_v1(t *testing.T) {
-//	input := []int{1, 2, 5, 3, 7, 10, 9, 12}
-//	want := 5
-//
-//	got := MinimumWindowSort(input)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("MinimumWindowSort", input, got, want))
-//	}
-//}
-//
-//func TestMinimumWindowSort_v2(t *testing.T) {
-//	input := []int{1, 3, 2, 0, -1, 7, 10}
-//	want := 5
-//
-//	got := MinimumWindowSort(input)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("MinimumWindowSort", input, got, want))
-//	}
-//}
-//
-//func TestMinimumWindowSort_v3(t *testing.T) {
-//	input := []int{1, 2, 3}
-//	want := 0
-//
-//	got := MinimumWindowSort(input)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("MinimumWindowSort", input, got, want))
-//	}
-//}
-//
-//func TestMinimumWindowSort_v4(t *testing.T) {
-//	input := []int{3, 2, 1}
-//	want := 3
-//
-//	got := MinimumWindowSort(input)
-//	if !reflect.DeepEqual(got, want) {
-//		t.Errorf(errorString("MinimumWindowSort", input, got, want))
-//	}
-//}
+func TestMinimumWindowSort_v1(t *testing.T) {
+	input := []int{1, 2, 5, 3, 7, 10, 9, 12}
+	want := 5
+
+	got := MinimumWindowSort(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MinimumWindowSort", input, got, want))
+	}
+}
+
+func TestMinimumWindowSort_v2(t *testing.T) {
+	input := []int{1, 3, 2, 0, -1, 7, 10}
+	want := 5
+
+	got := MinimumWindowSort(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MinimumWindowSort", input, got, want))
+	}
+}
+
+func TestMinimumWindowSort_v3(t *testing.T) {
+	input := []int{1, 2, 3}
+	want := 0
+
+	got := MinimumWindowSort(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MinimumWindowSort", input, got, want))
+	}
+}
+
+func TestMinimumWindowSort_v4(t *testing.T) {
+	input := []int{3, 2, 1}
+	want := 3
+
+	got := MinimumWindowSort(input)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MinimumWindowSort", input, got, want))
+	}
+}
 
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
