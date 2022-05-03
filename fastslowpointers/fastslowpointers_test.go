@@ -155,6 +155,52 @@ func TestHappyNumber_v2(t *testing.T) {
 	}
 }
 
+// 4. Middle of the LinkedList
+func TestMiddleOfTheLinkedList_v1(t *testing.T) {
+	head := ListNode{1, nil}
+	head.Next = &ListNode{2, nil}
+	head.Next.Next = &ListNode{3, nil}
+	head.Next.Next.Next = &ListNode{4, nil}
+	head.Next.Next.Next.Next = &ListNode{5, nil}
+	want := 3
+
+	got := MiddleOfTheLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MiddleOfTheLinkedList", head, got, want))
+	}
+}
+
+func TestMiddleOfTheLinkedList_v2(t *testing.T) {
+	head := ListNode{1, nil}
+	head.Next = &ListNode{2, nil}
+	head.Next.Next = &ListNode{3, nil}
+	head.Next.Next.Next = &ListNode{4, nil}
+	head.Next.Next.Next.Next = &ListNode{5, nil}
+	head.Next.Next.Next.Next.Next = &ListNode{6, nil}
+	want := 4
+
+	got := MiddleOfTheLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MiddleOfTheLinkedList", head, got, want))
+	}
+}
+
+func TestMiddleOfTheLinkedList_v3(t *testing.T) {
+	head := ListNode{1, nil}
+	head.Next = &ListNode{2, nil}
+	head.Next.Next = &ListNode{3, nil}
+	head.Next.Next.Next = &ListNode{4, nil}
+	head.Next.Next.Next.Next = &ListNode{5, nil}
+	head.Next.Next.Next.Next.Next = &ListNode{6, nil}
+	head.Next.Next.Next.Next.Next.Next = &ListNode{7, nil}
+	want := 4
+
+	got := MiddleOfTheLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("MiddleOfTheLinkedList", head, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }

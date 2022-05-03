@@ -92,3 +92,15 @@ func findSquareSum(num int) int {
 	}
 	return sum
 }
+
+// 4. Middle of the LinkedList
+func MiddleOfTheLinkedList(head ListNode) int {
+	slow := &head
+	fast := &head
+
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+	return slow.Value
+}
