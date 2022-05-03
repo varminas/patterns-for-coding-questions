@@ -65,3 +65,30 @@ func StartOfLinkedListCycle(head ListNode) int {
 	}
 	return pointer1.Value
 }
+
+// 3. Happy Number (medium)
+func HappyNumber(num int) bool {
+	slow := num
+	fast := num
+
+	for {
+		slow = findSquareSum(slow)
+		fast = findSquareSum(findSquareSum(fast))
+		if fast == slow {
+			break
+		}
+	}
+
+	return slow == 1
+}
+
+func findSquareSum(num int) int {
+	digit := 0
+	sum := 0
+	for num > 0 {
+		digit = num % 10
+		sum += digit * digit
+		num /= 10
+	}
+	return sum
+}

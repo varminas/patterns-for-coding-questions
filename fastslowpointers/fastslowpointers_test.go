@@ -136,6 +136,25 @@ func TestStartOfLinkedListCycle_v3(t *testing.T) {
 	}
 }
 
+// 3. Happy Number (medium)
+func TestHappyNumber_v1(t *testing.T) {
+	input := 23
+	got := HappyNumber(input)
+	want := true
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("HappyNumber", input, got, want))
+	}
+}
+
+func TestHappyNumber_v2(t *testing.T) {
+	input := 12
+	got := HappyNumber(input)
+	want := false
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("HappyNumber", input, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
