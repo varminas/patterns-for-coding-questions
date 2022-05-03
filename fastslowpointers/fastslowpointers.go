@@ -47,3 +47,21 @@ func calculateCycleLength(slow *ListNode) int {
 	}
 	return cycleLength
 }
+
+// 2. Start of LinkedList Cycle (medium)
+func StartOfLinkedListCycle(head ListNode) int {
+	cycleLength := LinkedListCycleLength(head)
+	pointer1 := &head
+	pointer2 := &head
+	for i := 0; i < cycleLength; i++ {
+		pointer2 = pointer2.Next
+	}
+	for {
+		if pointer1.Value == pointer2.Value {
+			break
+		}
+		pointer1 = pointer1.Next
+		pointer2 = pointer2.Next
+	}
+	return pointer1.Value
+}
