@@ -104,3 +104,50 @@ func MiddleOfTheLinkedList(head ListNode) int {
 	}
 	return slow.Value
 }
+
+// 5. Palindrome LinkedList (medium)
+func PalindromeLinkedList(head ListNode) bool {
+	slow := &head
+	fast := &head
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	// Reverse list
+	headSecondHalf := reverse(slow)
+	copyOfSecondHalf := headSecondHalf
+
+	//fmt.Printf("Middle is %v\n", slow.Value)
+	//fmt.Printf("Head second half is %v\n", headSecondHalf.Value)
+
+	// compare the first and the second half
+	for &head != nil && headSecondHalf != nil {
+		if head.Value != headSecondHalf.Value {
+			break // not a palindrome
+		}
+		if head.Next == nil {
+			break
+		}
+		head = *head.Next
+		headSecondHalf = headSecondHalf.Next
+	}
+
+	reverse(copyOfSecondHalf)
+	if head.Next == nil || headSecondHalf == nil {
+		return true
+	}
+	return false
+}
+
+func reverse(head *ListNode) *ListNode {
+	var prev *ListNode
+	for head != nil {
+		next := head.Next
+		head.Next = prev
+		prev = head
+		head = next
+	}
+	return prev
+}

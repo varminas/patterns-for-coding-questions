@@ -170,6 +170,38 @@ func TestMiddleOfTheLinkedList_v1(t *testing.T) {
 	}
 }
 
+// 5. Palindrome LinkedList (medium)
+func TestPalindromeLinkedList_v1(t *testing.T) {
+	head := ListNode{2, nil}
+	head.Next = &ListNode{4, nil}
+	head.Next.Next = &ListNode{6, nil}
+	head.Next.Next.Next = &ListNode{4, nil}
+	head.Next.Next.Next.Next = &ListNode{2, nil}
+	want := true
+
+	got := PalindromeLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("PalindromeLinkedList", head, got, want))
+	}
+}
+
+func TestPalindromeLinkedList_v2(t *testing.T) {
+	head := ListNode{2, nil}
+	head.Next = &ListNode{4, nil}
+	head.Next.Next = &ListNode{6, nil}
+	head.Next.Next.Next = &ListNode{4, nil}
+	head.Next.Next.Next.Next = &ListNode{2, nil}
+	head.Next.Next.Next.Next.Next = &ListNode{2, nil}
+	want := false
+
+	got := PalindromeLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("PalindromeLinkedList", head, got, want))
+	}
+}
+
+// 6.
+
 func TestMiddleOfTheLinkedList_v2(t *testing.T) {
 	head := ListNode{1, nil}
 	head.Next = &ListNode{2, nil}
