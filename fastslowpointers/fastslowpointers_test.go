@@ -233,6 +233,36 @@ func TestMiddleOfTheLinkedList_v3(t *testing.T) {
 	}
 }
 
+// 6. Rearrange a LinkedList (medium)
+func TestRearrangeLinkedList_v1(t *testing.T) {
+	head := ListNode{2, nil}
+	head.Next = &ListNode{4, nil}
+	head.Next.Next = &ListNode{6, nil}
+	head.Next.Next.Next = &ListNode{8, nil}
+	head.Next.Next.Next.Next = &ListNode{10, nil}
+	head.Next.Next.Next.Next.Next = &ListNode{12, nil}
+	want := "2 -> 12 -> 4 -> 10 -> 6 -> 8 -> nil"
+
+	got := RearrangeLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("RearrangeLinkedList", head, got, want))
+	}
+}
+
+func TestRearrangeLinkedList_v2(t *testing.T) {
+	head := ListNode{2, nil}
+	head.Next = &ListNode{4, nil}
+	head.Next.Next = &ListNode{6, nil}
+	head.Next.Next.Next = &ListNode{8, nil}
+	head.Next.Next.Next.Next = &ListNode{10, nil}
+	want := "2 -> 10 -> 4 -> 8 -> 6 -> nil"
+
+	got := RearrangeLinkedList(head)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf(errorString("RearrangeLinkedList", head, got, want))
+	}
+}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }

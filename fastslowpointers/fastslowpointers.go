@@ -1,5 +1,9 @@
 package fastslowpointers
 
+import (
+	"fmt"
+)
+
 // Pattern: Fast & Slow pointers
 
 type ListNode struct {
@@ -150,4 +154,50 @@ func reverse(head *ListNode) *ListNode {
 		head = next
 	}
 	return prev
+}
+
+// 6. Rearrange a LinkedList (medium)
+func RearrangeLinkedList(head ListNode) string {
+	slow := &head
+	fast := &head
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	headSecondHalf := reverse(slow)
+	headFirstHalf := &head
+
+	fmt.Printf("Head second half is %v\nHead first half is %v\n", headSecondHalf.Value, headFirstHalf.Value)
+
+	for headFirstHalf != nil && headSecondHalf != nil {
+		temp := headFirstHalf.Next
+		headFirstHalf.Next = headSecondHalf
+		headFirstHalf = temp
+
+		temp = headSecondHalf.Next
+		headSecondHalf.Next = headFirstHalf
+		headSecondHalf = temp
+	}
+
+	if headFirstHalf != nil {
+		headFirstHalf.Next = nil
+	}
+
+	return printList(head)
+}
+
+func printList(head ListNode) string {
+	result := ""
+	for &head.Next != nil {
+		result += fmt.Sprintf("%d -> ", head.Value)
+		if head.Next == nil {
+			result += "nil"
+			break
+		} else {
+			head = *head.Next
+		}
+	}
+	return result
 }
