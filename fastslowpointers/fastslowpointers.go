@@ -201,3 +201,9 @@ func printList(head ListNode) string {
 	}
 	return result
 }
+
+// 7. Cycle in a Circular Array
+func CycleInCircularArray(arr []int) bool {
+	// TODO
+	return false
+}

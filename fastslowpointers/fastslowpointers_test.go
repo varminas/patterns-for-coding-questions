@@ -263,6 +263,38 @@ func TestRearrangeLinkedList_v2(t *testing.T) {
 	}
 }
 
+// 7. Cycle in a Circular Array
+// TODO
+//func TestCycleInCircularArray_v1(t *testing.T) {
+//	input := []int{1, 2, -1, 2, 2}
+//	want := true
+//
+//	got := CycleInCircularArray(input)
+//	if !reflect.DeepEqual(got, want) {
+//		t.Errorf(errorString("CycleInCircularArray", input, got, want))
+//	}
+//}
+//
+//func TestCycleInCircularArray_v2(t *testing.T) {
+//	input := []int{2, 2, -1, 2}
+//	want := true
+//
+//	got := CycleInCircularArray(input)
+//	if !reflect.DeepEqual(got, want) {
+//		t.Errorf(errorString("CycleInCircularArray", input, got, want))
+//	}
+//}
+//
+//func TestCycleInCircularArray_v3(t *testing.T) {
+//	input := []int{2, 1, -1, -2}
+//	want := false
+//
+//	got := CycleInCircularArray(input)
+//	if !reflect.DeepEqual(got, want) {
+//		t.Errorf(errorString("CycleInCircularArray", input, got, want))
+//	}
+//}
+
 func errorString(funcName string, input interface{}, got interface{}, want interface{}) string {
 	return fmt.Sprintf("%v(%#v) \n\ngot= %#v \n\nwant=%#v", funcName, input, got, want)
 }
