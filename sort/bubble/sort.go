@@ -1,6 +1,9 @@
 package bubble
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/varminas/patterns-for-coding-questions/utils"
+)
 
 // 5, 1, 4, 2, 8
 func Sort(arr []int) []int {
@@ -12,7 +15,7 @@ func Sort(arr []int) []int {
 		for i := 1; i < n-1; i++ {
 			count++
 			if arr[i-1] > arr[i] {
-				swap(arr, i)
+				utils.Swap(arr, i)
 				swapped = true
 			}
 		}
@@ -20,10 +23,4 @@ func Sort(arr []int) []int {
 	}
 	fmt.Printf("Iterations: %d\n", count)
 	return arr
-}
-
-func swap(arr []int, i int) {
-	tmp := arr[i-1]
-	arr[i-1] = arr[i]
-	arr[i] = tmp
 }
